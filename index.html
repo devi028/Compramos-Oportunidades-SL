@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compramos Oportunidades, SL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        header {
+            background: #007bff;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .cart-icon {
+            font-size: 1.5em;
+            cursor: pointer;
+            position: relative;
+        }
+        .cart-summary {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            width: 300px;
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 15px;
+        }
+        .cart-summary h2 {
+            margin: 0 0 10px;
+        }
+        .cart-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cart-summary li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #dee2e6;
+            padding-bottom: 5px;
+            color: #007bff; /* Cambiado a color azul */
+        }
+        .cart-summary li:last-child {
+            border-bottom: none;
+        }
+        .cart-total {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #343a40; /* Color del total */
+        }
+        .help-section, .opinion-section {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .catalog-item {
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .catalog-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .catalog-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .catalog-item-content {
+            padding: 15px;
+        }
+        .catalog-item h3 {
+            margin: 0;
+            color: #343a40;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #6c757d;
+            padding: 20px 0;
+            background: #f1f1f1;
+            border-top: 1px solid #dee2e6;
+        }
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Compramos Oportunidades, SL</h1>
+    <div class="cart-icon" onclick="toggleCartSummary()">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-summary" id="cart-summary">
+            <h2>Cesta de Compras</h2>
+            <ul id="cart-items"></ul>
+            <p class="cart-total">Total: €<span id="cart-total">0</span></p>
+            <button onclick="checkout()">Finalizar Compra</button>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="section">
+        <h2>¿Quiénes Somos y Nuestro Objetivo?</h2>
+        <p>En Compramos Oportunidades, SL, nos dedicamos a dar una segunda vida a objetos que merecen ser rescatados. Nuestro objetivo es darle una nueva oportunidad a cualquier tipo de objeto, desde cañas de pescar hasta mesas o camisetas. Nos encargamos de comprarlos, restaurarlos y ponerlos a la venta, valorando la importancia de las segundas oportunidades de los objetos.</p>
+    </div>
+
+    <div class="section">
+        <h2>¿Dónde Estamos?</h2>
+        <p>Estamos ubicados en Avenida los Abrigos, 28, 38618 Los Abrigos, Santa Cruz de Tenerife, en una zona turística accesible para quienes buscan dar una segunda vida a diversos objetos. Ven y conoce nuestro local, donde encontrarás una amplia variedad de artículos únicos.</p>
+    </div>
+
+    <div class="section">
+        <h2>Catálogo de Artículos</h2>
+        <div class="catalog">
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\518S1uY+2qL._AC_UF894,1000_QL80_.jpg" alt="Caña de Pescar">
+                <div class="catalog-item-content">
+                    <h3>Caña de Pescar</h3>
+                    <p><strong>Precio:</strong> 35 €</p>
+                    <button onclick="addToCart('Caña de Pescar', 35)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\mesa-madera-natural.jpg" alt="Mesa de Madera">
+                <div class="catalog-item-content">
+                    <h3>Mesa de Madera</h3>
+                    <p><strong>Precio:</strong> 50 €</p>
+                    <button onclick="addToCart('Mesa de Madera', 50)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\Camisetas-vintage-Espana-Futbol-Camiseta-vintage-Espana-Futbol-Home-l.jpg" alt="Camiseta Vintage">
+                <div class="catalog-item-content">
+                    <h3>Camiseta Vintage</h3>
+                    <p><strong>Precio:</strong> 15 €</p>
+                    <button onclick="addToCart('Camiseta Vintage', 15)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\silla-retro-springfield.jpg" alt="Silla Retro">
+                <div class="catalog-item-content">
+                    <h3>Silla Retro</h3>
+                    <p><strong>Precio:</strong> 45 €</p>
+                    <button onclick="addToCart('Silla Retro', 45)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\71KCrhF55RL._AC_UF894,1000_QL80_.jpg" alt="Vinilos Clásicos">
+                <div class="catalog-item-content">
+                    <h3>Vinilos Clásicos</h3>
+                    <p><strong>Precio:</strong> 25 €</p>
+                    <button onclick="addToCart('Vinilos Clásicos', 25)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\istockphoto-505920763-612x612.jpg" alt="Reloj Antiguo">
+                <div class="catalog-item-content">
+                    <h3>Reloj Antiguo</h3>
+                    <p><strong>Precio:</strong> 120 €</p>
+                    <button onclick="addToCart('Reloj Antiguo', 120)">Añadir a la Cesta</button>
+                </div>
+            </div>
+            <div class="catalog-item">
+                <img src="C:\Users\Devit\Downloads\lampara-vintage-de-techo-multicolor-guache.jpg" alt="Lámpara Vintage">
+                <div class="catalog-item-content">
+                    <h3>Lámpara Vintage</h3>
+                    <p><strong>Precio:</strong> 60 €</p>
+                    <button onclick="addToCart('Lámpara Vintage', 60)">Añadir a la Cesta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="help-section">
+        <h2>¿Necesitas Ayuda?</h2>
+        <p>Ponte en contacto con nosotros para cualquier consulta o asistencia.</p>
+        <p><strong>Email:</strong> <a href="mailto:CompraOportunidades@hotmail.es">CompraOportunidades@hotmail.es</a></p>
+        <p><strong>Teléfono:</strong> <a href="tel:600044148">600044148</a></p>
+    </div>
+
+    <div class="opinion-section">
+        <h2>Déjanos tu Opinión</h2>
+        <p>Nos encantaría conocer tu experiencia y cualquier sugerencia que tengas.</p>
+        <textarea rows="5" cols="40" placeholder="Escribe tu opinión aquí..."></textarea>
+        <button>Enviar Opinión</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Compramos Oportunidades, SL. Todos los derechos reservados.</p>
+    <div class="footer-socials">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+</footer>
+
+<script>
+    let cart = [];
+    let total = 0;
+
+    function addToCart(item, price) {
+        cart.push({ item, price });
+        total += price;
+        updateCart();
+    }
+
+    function updateCart() {
+        const cartItems = document.getElementById('cart-items');
+        cartItems.innerHTML = '';
+        cart.forEach((product, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${product.item} - €${product.price}</span> <button onclick="removeFromCart(${index})">Eliminar</button>`;
+            cartItems.appendChild(li);
+        });
+        document.getElementById('cart-total').textContent = total;
+    }
+
+    function removeFromCart(index) {
+        total -= cart[index].price;
+        cart.splice(index, 1);
+        updateCart();
+    }
+
+    function toggleCartSummary() {
+        const cartSummary = document.getElementById('cart-summary');
+        cartSummary.style.display = cartSummary.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function checkout() {
+        alert('¡Gracias por tu compra!');
+        cart = [];
+        total = 0;
+        updateCart();
+        toggleCartSummary();
+    }
+</script>
+
+</body>
+</html>
